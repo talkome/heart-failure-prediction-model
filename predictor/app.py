@@ -1,13 +1,17 @@
 from flask import Flask, request
-from predictor.prediction import func
+from flask_cors import CORS
+
+from predictor.prediction import makePrediction
 
 app = Flask(__name__)
+CORS(app, resources={r"*": {"origins": "*"}})
 
 
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.get_json()
-    label = func(data)
+    label = makePrediction(data)
+    print(label)
     return label
 
 

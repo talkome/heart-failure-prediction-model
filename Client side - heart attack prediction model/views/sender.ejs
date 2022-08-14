@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.min.js"></script>
+
+    <script>
+
+        const socket = io('http://localhost:6064')
+        socket.on('connection')
+
+        function modelinfo() {
+            socket.emit('modelinfo');
+
+        }
+        socket.on('myPrediction', (data) => {
+            if(data==0) document.querySelector('h1').innerHTML = "no heart disease"
+            else document.querySelector('h1').innerHTML = "heart disease"
+        })
+
+        socket.on('ready', () => {
+            document.querySelector('h2').innerHTML = 'Please wait ...'
+            setTimeout(function () {
+                document.querySelector('h2').innerHTML = "Ready !"
+            }, 10000);
+        })
+
+        function Prediction() {
+            var pre = {}
+            pre.age = parseInt(document.getElementById("age").value)
+            pre.ChestPainType = document.getElementById("ChestPainType").value
+            pre.FastingBS = document.getElementById("FastingBS").value
+            pre.Cholesterol = document.getElementById("Cholesterol").value
+            pre.gander = document.getElementById("gander").value
+            pre.RestingBP = document.getElementById("RestingBP").value
+            pre.RestingECG = document.getElementById("RestingECG").value
+            pre.MaxHR = document.getElementById("MaxHR").value
+            pre.ExerciseAngina = document.getElementById("ExerciseAngina").value
+            pre.Oldpeak = document.getElementById("Oldpeak").value
+            pre.ST_Slope = document.getElementById("ST_Slope").value
+            socket.emit('Prediction', pre);
+        }
+
+    </script>
+
+
+</head>
+
+<body style="background:lightgrey;">
+    <input type="button" id="Set" value="Create a prediction model" onclick="modelinfo()"
+        style="font-size: 20px; width: 300px; height: 50px; " />
+    <h2 style="color: rgb(45, 125, 125);"></h2>
+
+    <hr>
+    <br>
+
+    <div class="age" style="background-color: royalblue; width: 500px; height: 40px;">
+        <p1 style="font-size: 25px; color: aliceblue; padding: 10px;">age: </p1>
+        <input type="number" id="age" min="0" max="120" value="0" style="background-color: royalblue; padding: 4px; color: rgba(255, 255, 255, 1);">
+    </div>
+    <br>
+
+    <div class="ChestPainType" style="background-color: rgb(147, 171, 243); width: 500px; height: 40px;">
+        <p1 style="font-size: 25px; color: aliceblue; padding: 10px;">ChestPainType: </p1>
+        <select id="ChestPainType" style="background-color: rgb(147, 171, 243); padding: 4px; color: rgba(255, 255, 255, 1);">
+            <option value='ATA'>ATA</option>
+            <option value='NAP'>NAP</option>
+            <option value='ASY'>ASY</option>
+            <option value='TA'>TA</option>
+        </select>
+    </div>
+    <br>
+
+    <div class="FastingBS" style="background-color: royalblue; width: 500px; height: 40px;">
+        <p1 style="font-size: 25px; color: aliceblue; padding: 10px;">FastingBS: </p1>
+        <select id="FastingBS" style="background-color: royalblue; padding: 4px; color: rgba(255, 255, 255, 1);">
+            <option value='0'>No</option>
+            <option value='1'>Yes</option>
+        </select>
+    </div>
+    <br>
+
+    <div class="Cholesterol" style="background-color: rgb(147, 171, 243); width: 500px; height: 40px;">
+        <p1 style="font-size: 25px; color: aliceblue; padding: 10px;">Cholesterol: </p1>
+        <input input type="number" id="Cholesterol" value="0" style="background-color: rgb(147, 171, 243);padding: 3px; color: rgba(255, 255, 255, 1);">
+    </div>
+    <br>
+
+    <div class="gander" style="background-color: royalblue; width: 500px; height: 40px;">
+        <p1 style="font-size: 25px; color: aliceblue; padding: 10px;">gander: </p1>
+        <select id="gander" style="background-color: royalblue; padding: 4px; color: rgba(255, 255, 255, 1);">
+            <option value='F'>Female</option>
+            <option value='M'>Male</option>
+        </select>
+    </div>
+    <br>
+
+    <div class="RestingBP" style="background-color: rgb(147, 171, 243); width: 500px; height: 40px;">
+        <p1 style="font-size: 25px; color: aliceblue; padding: 10px;">RestingBP: </p1>
+        <input type="number" id="RestingBP" min="0" max="200" value="0" style="background-color: rgb(147, 171, 243); padding: 4px; color: rgba(255, 255, 255, 1);">
+    </div>
+    <br>
+
+    <div class="RestingECG" style="background-color: royalblue; width: 500px; height: 40px;">
+        <p1 style="font-size: 25px; color: aliceblue; padding: 10px;">RestingECG: </p1>
+        <select id="RestingECG" style="background-color: royalblue; padding: 4px; color: rgba(255, 255, 255, 1);">
+            <option value='Normal'>Normal</option>
+            <option value='LVH'>LVH</option>
+            <option value='ST'>ST</option>
+        </select>
+    </div>
+    <br>
+
+    <div class="MaxHR" style="background-color: rgb(147, 171, 243); width: 500px; height: 40px;">
+        <p1 style="font-size: 25px; color: aliceblue; padding: 10px;">MaxHR: </p1>
+        <input type="number" id="MaxHR" min="0" max="200" value="0" style="background-color: rgb(147, 171, 243); padding: 4px; color: rgba(255, 255, 255, 1);">
+    </div>
+    <br>
+
+    <div class="ExerciseAngina" style="background-color: royalblue; width: 500px; height: 40px;">
+        <p1 style="font-size: 25px; color: aliceblue; padding: 10px;">ExerciseAngina: </p1>
+        <select id="ExerciseAngina" style="background-color: royalblue; padding: 4px; color: rgba(255, 255, 255, 1);">
+            <option value='Up'>Up</option>
+            <option value='N'>N</option>
+            <option value='Y'>Y</option>
+        </select>
+    </div>
+    <br>
+
+    <div class="Oldpeak" style="background-color: rgb(147, 171, 243); width: 500px; height: 40px;">
+        <p1 style="font-size: 25px; color: aliceblue; padding: 10px;">Oldpeak: </p1>
+        <select id="Oldpeak" style="background-color: rgb(147, 171, 243); padding: 4px; color: rgba(255, 255, 255, 1);">
+            <option value='0'>No</option>
+            <option value='1'>Yes</option>
+        </select>
+    </div>
+    <br>
+
+    <div class="ST_Slope" style="background-color: royalblue; width: 500px; height: 40px;">
+        <p1 style="font-size: 25px; color: aliceblue; padding: 10px;">ST_Slope: </p1>
+        <select id="ST_Slope" style="background-color: royalblue; padding: 4px; color: rgba(255, 255, 255, 1);">
+            <option value='Up'>Up</option>
+            <option value='Flat'>Flat</option>
+        </select>
+    </div>
+    <br>
+
+    <input type="button" id="Check" value="Check.." onclick="Prediction()"
+        style="font-size: 30px; width: 300px; height: 50px;" />
+    <br>
+    <br>
+    <p1 style="color:indigo; font-size: 30px;">prediction :</p1>
+    <h1 style="color: indigo;"></h1>
+</body>
+
+</html>

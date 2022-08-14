@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.min.js"></script>
+
+    <script>
+
+        function Prediction() {
+            var pre = {}
+            pre.Age = parseInt(document.getElementById("age").value)
+            pre.Sex = document.querySelector('input[name="gander"]:checked').value 
+            pre.RestingBP = document.getElementById("RestingBP").value
+            pre.Cholesterol = document.getElementById("Cholesterol").value
+            pre.FastingBS = document.getElementById("FastingBS").value
+            pre.MaxHR = document.getElementById("MaxHR").value
+            pre.ExerciseAngina = document.getElementById("ExerciseAngina").value
+            pre.Oldpeak = document.getElementById("Oldpeak").value
+            if(document.getElementById("ChestPainType").valuetPainType == 'ATA' ){
+                pre.ChestPainType_ATA = 1
+                pre.ChestPainType_NAP = 0
+                pre.ChestPainType_TA = 0
+            }
+            else if(document.getElementById("ChestPainType").valuetPainType == 'NAP'){
+                pre.ChestPainType_ATA = 0
+                pre.ChestPainType_NAP = 1
+                pre.ChestPainType_TA = 0
+            }
+            else{
+                pre.ChestPainType_ATA = 0
+                pre.ChestPainType_NAP = 0
+                pre.ChestPainType_TA = 1
+            }
+        
+            if(document.getElementById("RestingECG").value == 'Normal'){
+                pre.RestingECG_Normal = 1;
+                pre.RestingECG_ST = 0;
+            }
+            else{
+                pre.RestingECG_Normal = 0;
+                pre.RestingECG_ST = 1; 
+            }
+            
+            if(document.getElementById("ST_Slope").value == 'Up'){
+                pre.ST_Slope_Flat = 0;
+                pre.ST_Slope_Up = 1;
+            }
+            else{
+                pre.ST_Slope_Flat = 1;
+                pre.ST_Slope_Up = 0;
+            }
+
+
+            // send http request localhost:5000/predict
+            var xmlHttp = new XMLHttpRequest();
+
+            xmlHttp.onreadystatechange = function() {
+                if (xmlHttp.readyState == XMLHttpRequest.DONE) {
+                    var label = xmlHttp.responseText;
+                    if(label=="Negative") document.querySelector('h1').innerHTML = "no heart disease"
+                    else if (label=="Positive") document.querySelector('h1').innerHTML = "heart disease"
+                }
+            }
+
+            var theUrl = "http://localhost:5000/predict";
+            xmlHttp.open("POST", theUrl);
+            xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlHttp.send(JSON.stringify(pre));
+
+        }
+
+        
+    </script>
+
+    <style>
+        
+        header {text-align: center;color: white; font-size: 30px; font-family: Arial}
+    </style>
+</head>
+
+<body style="background:rgb(0, 123, 194); ">
+
+    <header>Heart Attack Prediction Model</header>
+   <br>
+
+   <br>
+   
+    <div class="for-gander" style="text-align: center;">
+        <input  type='radio' id='male' value="0" checked='checked' name='gander'>
+        <label style="margin-right: 100px;"  for='male'>Male</label>
+        <input type='radio' id='female' value="1" name='gander'>
+        <label for='female'>Female</label>
+    </div>
+
+    <div class="form-age" style="padding: 10px 0 10px 0; width: 600px; height: 40px; margin-left: 300px;">
+        <label for="sliderAll" style="color: white; font-size: 20px; font-family: Arial">Age:</label>
+        <input type="range" id="s_age" min="0" max="120" value="0"
+        style="width: 50%;" />
+        <input id="age" min="0" max="120" value="0" style="margin-left:10px;" />
+        <hr style="height:1px;border-width:0;color:gray;background-color:gray">
+      </div>
+
+      <div class="form-Cholesterol" style="padding: 10px 0 10px 0; width: 600px; height: 40px; margin-left: 300px;">
+        <label for="sliderAll" style="color: white; font-size: 20px; font-family: Arial">Cholesterol:</label>
+        <input type="range" id="s_Cholesterol" min="0" max="500" value="0"
+        style="width: 50%;" />
+        <input id="Cholesterol" min="0" max="500" value="0" style="margin-left:10px;" />
+        <hr style="height:1px;border-width:0;color:gray;background-color:gray">
+      </div>
+
+      <div class="form-RestingBP" style="padding: 10px 0 10px 0; width: 600px; height: 40px; margin-left: 300px;">
+        <label for="sliderAll" style="color: white; font-size: 20px; font-family: Arial">RestingBP:</label>
+        <input type="range" id="s_RestingBP" min="0" max="500" value="0"
+        style="width: 50%;" />
+        <input id="RestingBP" min="0" max="500" value="0" style="margin-left:10px;" />
+        <hr style="height:1px;border-width:0;color:gray;background-color:gray">
+      </div>
+
+      <div class="form-MaxHR" style="padding: 10px 0 10px 0; width: 600px; height: 40px; margin-left: 300px;">
+        <label for="sliderAll" style="color: white; font-size: 20px; font-family: Arial">MaxHR:</label>
+        <input type="range" id="s_MaxHR" min="0" max="500" value="0"
+        style="width: 50%;" />
+        <input id="MaxHR" min="0" max="500" value="0" style="margin-left:10px;" />
+        <hr style="height:1px;border-width:0;color:gray;background-color:gray">
+      </div>
+
+      <div class="choos1" style="margin-left:300px;">
+        <p1 style="font-size: 20px; font-family: Arial; color: aliceblue; padding: 10px;">ChestPainType: </p1>
+        <select id="ChestPainType" style="padding: 4px; color:black;">
+            <option value='ATA'>ATA</option>
+            <option value='NAP'>NAP</option>
+            <option value='ASY'>ASY</option>
+            <!-- <option value='TA'>TA</option> -->
+        </select>
+ 
+        <p1 style="font-size: 20px; font-family: Arial; color: aliceblue; padding: 0 10px 0 90px ;">FastingBS: </p1>
+        <select id="FastingBS" style="padding: 4px; color: black;">
+            <option value='0'>No</option>
+            <option value='1'>Yes</option>
+        </select>
+    </div>
+    <br>
+
+    <div class="choos2" style="margin-left:300px;">
+        <p1 style="font-size: 20px; font-family: Arial; color: aliceblue; padding: 10px;">RestingECG: </p1>
+        <select id="RestingECG" style="padding: 4px; color: black;">
+            <option value='Normal'>Normal</option>
+            <!-- <option value='LVH'>LVH</option> -->
+            <option value='ST'>ST</option>
+        </select>
+
+        <p1 style="font-size: 20px; font-family: Arial; color: aliceblue; padding: 0 10px 0 100px;">ExerciseAngina: </p1>
+        <select id="ExerciseAngina" style=" padding: 4px; color:black;">
+            <!-- <option value='Up'>Up</option> -->
+            <option value='0'>N</option>
+            <option value='1'>Y</option>
+        </select>
+    </div>
+
+    <br>
+
+    <div class="choos3" style="margin-left:300px;">
+        <p1 style="font-size: 20px;font-family: Arial; color: aliceblue; padding: 10px;">Oldpeak: </p1>
+        <select id="Oldpeak" style=" padding: 4px; color: black;">
+            <option value='0'>No</option>
+            <option value='1'>Yes</option>
+        </select>
+
+        <p1 style="font-size: 20px; font-family: Arial; color: aliceblue; padding: 0 10px 0 156px;">ST_Slope: </p1>
+        <select id="ST_Slope" style="padding: 4px; color:black;">
+            <option value='Up'>Up</option>
+            <option value='Flat'>Flat</option>
+        </select>
+    </div>
+
+    <br>
+    <br>
+
+    <input type="button" id="Check" value="Check.." onclick="Prediction()"
+        style="font-size: 20px; font-family: Arial; margin-left:500px; width: 200px; height: 30px;" />
+        <br>
+        
+        <h1 style="color:white; font-size: 25px; font-family: Arial;  margin-left:530px;"></h1>
+</body>
+<script> 
+
+    var slider_age = document.getElementById("s_age");
+    var output_age = document.getElementById("age");
+        slider_age.oninput = function() {
+            document.getElementById("age").value = this.value;
+        }
+        output_age.oninput = function(){
+            document.getElementById("s_age").value = this.value;
+        }
+
+    var slider_Cholesterol = document.getElementById("s_Cholesterol");
+    var output_Cholesterol = document.getElementById("Cholesterol");
+        slider_Cholesterol.oninput = function() {
+            document.getElementById("Cholesterol").value = this.value;
+        }
+        output_Cholesterol.oninput = function(){
+            document.getElementById("s_Cholesterol").value = this.value;
+        }
+
+    var slider_RestingBP = document.getElementById("s_RestingBP");
+    var output_RestingBP = document.getElementById("RestingBP");
+        slider_RestingBP.oninput = function() {
+            document.getElementById("RestingBP").value = this.value;
+        }
+        output_RestingBP.oninput = function(){
+            document.getElementById("s_RestingBP").value = this.value;
+        }
+
+    var slider_MaxHR = document.getElementById("s_MaxHR");
+    var output_MaxHR = document.getElementById("MaxHR");
+        slider_MaxHR.oninput = function() {
+            document.getElementById("MaxHR").value = this.value;
+        }
+        output_MaxHR.oninput = function(){
+            document.getElementById("s_MaxHR").value = this.value;
+        }
+
+
+</script>
+</html>
