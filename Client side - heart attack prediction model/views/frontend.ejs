@@ -77,8 +77,10 @@
     </script>
 
     <style>
-        
-        header {text-align: center;color: white; font-size: 30px; font-family: Arial}
+        /* *{
+            text-align: center
+        } */
+        header {color: white; font-size: 30px; font-family: Arial}
     </style>
 </head>
 
@@ -89,22 +91,22 @@
 
    <br>
    
-    <div class="for-gander" style="text-align: center;">
+    <div class="for-gander">
         <input  type='radio' id='male' value="0" checked='checked' name='gander'>
-        <label style="margin-right: 100px;"  for='male'>Male</label>
+        <label style="margin-right: 100px; color: white; font-size: 20px; font-family: Arial"  for='male'>Male</label>
         <input type='radio' id='female' value="1" name='gander'>
-        <label for='female'>Female</label>
+        <label for='female' style="color: white; font-size: 20px; font-family: Arial">Female</label>
     </div>
 
-    <div class="form-age" style="padding: 10px 0 10px 0; width: 600px; height: 40px; margin-left: 300px;">
-        <label for="sliderAll" style="color: white; font-size: 20px; font-family: Arial">Age:</label>
+    <div class="form-age" style="padding: 10px 0 10px 0; width: 600px; height: 40px;">
+        <label for="sliderAll" style="color: white; font-size: 20px; font-family: Arial;">Age:</label>
         <input type="range" id="s_age" min="0" max="120" value="0"
         style="width: 50%;" />
         <input id="age" min="0" max="120" value="0" style="margin-left:10px;" />
         <hr style="height:1px;border-width:0;color:gray;background-color:gray">
       </div>
 
-      <div class="form-Cholesterol" style="padding: 10px 0 10px 0; width: 600px; height: 40px; margin-left: 300px;">
+      <div class="form-Cholesterol" style="padding: 10px 0 10px 0; width: 600px; height: 40px;">
         <label for="sliderAll" style="color: white; font-size: 20px; font-family: Arial">Cholesterol:</label>
         <input type="range" id="s_Cholesterol" min="0" max="500" value="0"
         style="width: 50%;" />
@@ -112,7 +114,7 @@
         <hr style="height:1px;border-width:0;color:gray;background-color:gray">
       </div>
 
-      <div class="form-RestingBP" style="padding: 10px 0 10px 0; width: 600px; height: 40px; margin-left: 300px;">
+      <div class="form-RestingBP" style="padding: 10px 0 10px 0; width: 600px; height: 40px;">
         <label for="sliderAll" style="color: white; font-size: 20px; font-family: Arial">RestingBP:</label>
         <input type="range" id="s_RestingBP" min="0" max="500" value="0"
         style="width: 50%;" />
@@ -120,7 +122,7 @@
         <hr style="height:1px;border-width:0;color:gray;background-color:gray">
       </div>
 
-      <div class="form-MaxHR" style="padding: 10px 0 10px 0; width: 600px; height: 40px; margin-left: 300px;">
+      <div class="form-MaxHR" style="padding: 10px 0 10px 0; width: 600px; height: 40px;">
         <label for="sliderAll" style="color: white; font-size: 20px; font-family: Arial">MaxHR:</label>
         <input type="range" id="s_MaxHR" min="0" max="500" value="0"
         style="width: 50%;" />
@@ -128,7 +130,7 @@
         <hr style="height:1px;border-width:0;color:gray;background-color:gray">
       </div>
 
-      <div class="choos1" style="margin-left:300px;">
+      <div class="choos1">
         <p1 style="font-size: 20px; font-family: Arial; color: aliceblue; padding: 10px;">ChestPainType: </p1>
         <select id="ChestPainType" style="padding: 4px; color:black;">
             <option value='ATA'>ATA</option>
@@ -145,7 +147,7 @@
     </div>
     <br>
 
-    <div class="choos2" style="margin-left:300px;">
+    <div class="choos2">
         <p1 style="font-size: 20px; font-family: Arial; color: aliceblue; padding: 10px;">RestingECG: </p1>
         <select id="RestingECG" style="padding: 4px; color: black;">
             <option value='Normal'>Normal</option>
@@ -163,7 +165,7 @@
 
     <br>
 
-    <div class="choos3" style="margin-left:300px;">
+    <div class="choos3">
         <p1 style="font-size: 20px;font-family: Arial; color: aliceblue; padding: 10px;">Oldpeak: </p1>
         <select id="Oldpeak" style=" padding: 4px; color: black;">
             <option value='0'>No</option>
@@ -181,10 +183,10 @@
     <br>
 
     <input type="button" id="Check" value="Check.." onclick="Prediction()"
-        style="font-size: 20px; font-family: Arial; margin-left:500px; width: 200px; height: 30px;" />
+        style="font-size: 20px; font-family: Arial; text-align: center; width: 200px; height: 30px;" />
         <br>
         
-        <h1 style="color:white; font-size: 25px; font-family: Arial;  margin-left:530px;"></h1>
+        <h1 style="color:white; font-size: 25px; font-family: Arial;"></h1>
 </body>
 <script> 
 
