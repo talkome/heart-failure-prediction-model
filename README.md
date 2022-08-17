@@ -43,7 +43,7 @@ This project requires Python 3 and the following Python libraries installed:
 
 ![WhatsApp Image 2022-08-17 at 9 41 28 PM](https://user-images.githubusercontent.com/52321544/185230281-4dcbd9c7-eafb-4fbd-874d-c4f5f1282989.jpeg)
 
-![WhatsApp Image 2022-08-17 at 9 41 28 PM](https://user-images.githubusercontent.com/52321544/185230415-fde4ade0-2d6a-483d-97a1-fc9a5efdf55c.jpeg)
+![WhatsApp Image 2022-08-17 at 10 53 48 PM](https://user-images.githubusercontent.com/52321544/185230945-8428bda5-9412-4207-9dc0-a4236e6ad247.jpeg)
 
 
 ## Project flowchart:
