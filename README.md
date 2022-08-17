@@ -39,6 +39,13 @@ This project requires Python 3 and the following Python libraries installed:
 - gunicorn~=19.9.0
 - Flask-Cors~=3.0.10
 
+## Preview
+
+![WhatsApp Image 2022-08-17 at 9 41 28 PM](https://user-images.githubusercontent.com/52321544/185230281-4dcbd9c7-eafb-4fbd-874d-c4f5f1282989.jpeg)
+
+![WhatsApp Image 2022-08-17 at 9 41 28 PM](https://user-images.githubusercontent.com/52321544/185230415-fde4ade0-2d6a-483d-97a1-fc9a5efdf55c.jpeg)
+
+
 ## Project flowchart:
 
 ![1](https://user-images.githubusercontent.com/10403994/185229861-0766a960-22ea-461e-b365-d1c833adda1d.jpg)
