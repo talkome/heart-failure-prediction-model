@@ -10,6 +10,7 @@ CORS(app, resources={r"*": {"origins": "*"}})
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.get_json()
+    print(data)
     label = makePrediction(data)
     print(label)
     return label

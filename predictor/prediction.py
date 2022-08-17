@@ -44,7 +44,8 @@ def makePrediction(user_data):
     # Prediction
     X_valid_batch = torch.from_numpy(X_test).float()
     output = model(X_valid_batch)
-    y_pred = torch.round(torch.sigmoid(output))
-    y_pred_label = "Positive" if y_pred[0].item() > 0.5 else "Negative"
-    return y_pred_label
+    ypred_rest = torch.sigmoid(output)
+    #y_pred = torch.round(torch.sigmoid(output))
+    #y_pred_label = "Positive" if y_pred[0].item() > 0.5 else "Negative"
+    return str(ypred_rest[0].item())
 
