@@ -28,7 +28,7 @@
 - ST_Slope: the slope of the peak exercise ST segment [Up: upsloping, Flat: flat, Down: downsloping]
 - HeartDisease: output class [½  < : heart disease, ½ > : Normal]
 
-##Install
+## Install
 
 This project requires Python 3 and the following Python libraries installed:
 
