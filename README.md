@@ -32,11 +32,11 @@
 
 This project requires Python 3 and the following Python libraries installed:
 
-Flask~=2.0.3
-pandas~=1.1.5
-torch~=1.10.2
-scikit-learn~=0.24.2
-gunicorn~=19.9.0
-Flask-Cors~=3.0.10
+- Flask~=2.0.3
+- pandas~=1.1.5
+- torch~=1.10.2
+- scikit-learn~=0.24.2
+- gunicorn~=19.9.0
+- Flask-Cors~=3.0.10
 
 
